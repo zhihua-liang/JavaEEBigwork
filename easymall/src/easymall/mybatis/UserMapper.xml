@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="easymall.dao.UserDao">
+	<!-- 用于返回用户在数据库的信息 -->
+	<select id="login" parameterType="easymall.pojo.User" resultType="easymall.pojo.User">
+		select * from user where username = #{username} and password = #{password}
+	</select>
+	
+	<!-- 检查数据库是否有这个用户 -->
+	<select id="checkUsername" parameterType="String" resultType="easymall.pojo.User">
+		select * from user where username = #{username}
+	</select>
+	
+	<!-- 将用户插入到数据库中 -->
+	<insert id="regist" parameterType="easymall.pojo.User">
+		insert into user(id,username,password,nickname,email)
+		values(null,#{username},#{password},#{nickname},#{email})
+	</insert>
+	
+	<!-- 激活邮箱 -->
+	<update id="updatecode" parameterType="easymall.pojo.User">
+		update user set activeState = #{activeState},code = #{code} where email = #{email}
+	</update>
+	
+</mapper>
