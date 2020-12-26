@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import easymall.pojo.Products;
 import easymall.service.ProductsService;
@@ -80,5 +81,20 @@ public class ProductsController {
 		List<Products> products = productsService.prodclass(category);
 		model.addAttribute("products", products);
 		return "forward:/WEB-INF/jsp/prod_list.jsp";
+	}
+	
+	//用于处理echarts
+	@RequestMapping("/showchart")
+	public String showChart(Model model) {
+		return "chart";
+	}
+	
+	//以json方式返回所有商品的数据
+	@ResponseBody
+	@RequestMapping("/getProducts")
+	public List<Products> getProducts(){
+		//查找所有商品
+		List<Products> products = productsService.selectAllProducts();
+		return products;
 	}
 }

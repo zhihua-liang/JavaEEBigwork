@@ -36,4 +36,9 @@ public class ProductsServiceImpl implements ProductsService {
 		return productsDao.prodclass(category);
 	}
 
+	@Override
+	public List<Products> selectAllProducts() {
+		return productsDao.selectAllProducts();
+	}
+
 }

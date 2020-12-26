@@ -14,4 +14,6 @@ public interface ProductsService {
 	public Products oneProducts(String pid);
 	//查找一类商品
 	public List<Products> prodclass(String category);
+	//查找所有商品
+	public List<Products> selectAllProducts();
 }

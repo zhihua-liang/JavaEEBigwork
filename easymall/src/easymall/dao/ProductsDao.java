@@ -22,4 +22,7 @@ public interface ProductsDao {
 	
 	//查找一类商品
 	public List<Products> prodclass(String category);
+	
+	//返回所有的商品
+	public List<Products> selectAllProducts();
 }

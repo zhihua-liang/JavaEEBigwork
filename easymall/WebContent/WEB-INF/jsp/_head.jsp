@@ -25,6 +25,9 @@
 		<span id="goto">
 			<a id="goto_order" href="${pageContext.request.contextPath}/order/showorder">我的订单</a>
 			<a id="goto_cart" href="${pageContext.request.contextPath}/cart/showCart">我的购物车</a>
+			
+			<!-- 新增的查看图表超链接，有后台后转移地方 -->
+			<a id="goto_chart" href="${ pageContext.request.contextPath }/showchart">我的图表</a>
 		</span>
 		<img id="erwm" src="${ pageContext.request.contextPath }/img/head/qr.jpg"/>
 	</div>

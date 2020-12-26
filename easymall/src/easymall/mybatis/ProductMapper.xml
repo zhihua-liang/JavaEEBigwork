@@ -30,4 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from products where category=#{category}
 	</select>
 	
+	<!-- 返回所有的商品 -->
+	<select id="selectAllProducts" resultType="easymall.pojo.Products">
+		select * from products
+	</select>
 </mapper>
