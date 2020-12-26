@@ -5,6 +5,14 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/index.css" />
 <title>欢迎光临EasyMall</title>
+<script type="text/javascript" 
+src="http://api.map.baidu.com/api?v=2.0&ak=p4KVhkAcEkeAx3eBZ1HNGo3ZjDslMkYH"></script>  
+<style>
+	#container{
+		height:450px;
+		width:1200px;
+		margin:0px auto;}
+</style>
 </head>
 <body>
 	<!-- 将头部(_head.jsp)包含进来 -->
@@ -43,9 +51,27 @@
 					<img src="${ pageContext.request.contextPath }/img/index/icon_g4.png"/>&nbsp;&nbsp;448家维修网点 全国联保 
 				</span>
 			</div>
+			<div id="container"></div>
 		</div>
 		<!-- 将头部(_foot.jsp)包含进来 -->
 	<jsp:include page="/WEB-INF/jsp/_foot.jsp"/>
-	+
+	<script type="text/javascript">
+		var map = new BMap.Map("container"); // 创建地图实例  
+		var point = new BMap.Point(116.404, 39.915); // 创建点坐标  
+		map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别  
+		map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+		var geolocation = new BMap.Geolocation();
+		geolocation.getCurrentPosition(function(r){
+			if(this.getStatus() == BMAP_STATUS_SUCCESS){
+				var mk = new BMap.Marker(r.point);
+				map.addOverlay(mk);
+				map.panTo(r.point);
+			}
+			else {
+				alert('failed'+this.getStatus());
+			}        
+		});
+	</script>
+	
 	</body>
 </html>
