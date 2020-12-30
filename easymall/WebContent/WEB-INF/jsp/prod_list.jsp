@@ -17,7 +17,7 @@
 				<select name="category">
 					<option value="">不限</option>
 					<c:forEach items="${categorys}" var = "c">
-						<option value="${c}">${c}</option>
+						<option value="${c.id}">${c.name}</option>
 					</c:forEach>
 				</select>
 				

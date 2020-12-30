@@ -4,10 +4,18 @@ public class Products {
 	private String id;
 	private String name;
 	private Double price;
-	private String category;
+	private Integer category;
 	private Integer pnum;
+	private Integer soldnum;
 	private String imgurl;
 	private String description;
+	
+	
+	@Override
+	public String toString() {
+		return "Products [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", pnum="
+				+ pnum + ", soldnum=" + soldnum + ", imgurl=" + imgurl + ", description=" + description + "]";
+	}
 	public String getId() {
 		return id;
 	}
@@ -26,10 +34,11 @@ public class Products {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	public String getCategory() {
+	
+	public Integer getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 	public Integer getPnum() {
@@ -49,6 +58,12 @@ public class Products {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getSoldnum() {
+		return soldnum;
+	}
+	public void setSoldnum(Integer soldnum) {
+		this.soldnum = soldnum;
 	}
 	
 	

@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="prodlist" resultType="easymall.pojo.Products" parameterType="map">
 		select * from products where (price between #{minPrice} and #{maxPrice})
 		<if test="name != null and name != ''">
-			and name like concat('%',#{name},'%)
+			and name like concat('%',#{name},'%')
 		</if>
 		<if test="category != nul and category != ''">
 			and category = #{category} 
@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 查找所有的商品种类 -->
-	<select id="allcategorys" resultType="String">
-		select distinct(category) from products
+	<select id="allcategorys" resultType="easymall.pojo.Category">
+		select * from category
 	</select>
 	
 	<!-- 查找单个商品 -->
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 查找一类商品 -->
-	<select id="prodclass" parameterType="String" 
+	<select id="prodclass" parameterType="Integer" 
 	resultType="easymall.pojo.Products">
 		select * from products where category=#{category}
 	</select>
@@ -33,5 +33,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 返回所有的商品 -->
 	<select id="selectAllProducts" resultType="easymall.pojo.Products">
 		select * from products
+	</select>
+	
+	<select id="selectAllProductsBysaleNum" resultType="easymall.pojo.Products">
+		select * from products order by soldnum desc 
+	</select>
+	
+	<!-- 插入新的商品 -->
+	<insert id="save" parameterType="easymall.pojo.Products">
+		insert into products(id,name,price,category,pnum,imgurl,description)
+		 values(#{id},#{name},#{price},#{category},#{pnum},#{imgurl},#{description})
+	</insert>
+	
+	<!-- 通过imgurl查钊商品 -->
+	<select id="findByImgurl" parameterType="String" resultType="easymall.pojo.Products">
+		select * from products where imgurl=#{imgurl}
 	</select>
 </mapper>

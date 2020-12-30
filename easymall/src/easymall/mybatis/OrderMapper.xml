@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 显示订单 -->
 	<select id="findOrderByUserId" parameterType="Integer" resultType="easymall.pojo.Orders">
-		select * from orders where user_id
+		select * from orders where user_id = #{user_id}
 	</select>
 	
 	<!-- 删除订单 -->

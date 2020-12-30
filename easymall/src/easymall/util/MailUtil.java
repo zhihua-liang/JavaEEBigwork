@@ -59,6 +59,7 @@ public class MailUtil implements Runnable {
 			// 2.3设置邮件主题
 			message.setSubject("账号激活");
 			// 2.4设置邮件内容
+			System.out.println("email: " + email);
 			String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1><h3>"
 					+ "<a href='http://localhost:8080/easymall/user/updatecode?code="+ code + "&email="+email
 					+"'>http://localhost:8080/easymall/user/updatecode?code=" + code
@@ -66,7 +67,6 @@ public class MailUtil implements Runnable {
 			message.setContent(content, "text/html;charset=UTF-8");
 			// 3.发送邮件
 			Transport.send(message);
-			System.out.println("邮件成功发送!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -149,13 +149,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="tds">昵称：</td>
-					<td>
-						<input type="text" name="nickname"  value="${ param.nickname }"/>
-						<span></span>
-					</td>
-				</tr>
-				<tr>
 					<td class="tds">邮箱：</td>
 					<td>
 						<input type="text" name="email" value="${ param.email }"/>

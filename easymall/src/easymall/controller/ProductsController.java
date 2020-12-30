@@ -2,6 +2,7 @@ package easymall.controller;
 
 import java.util.HashMap;
 import java.util.List;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import easymall.pojo.Category;
+import easymall.pojo.POI;
 import easymall.pojo.Products;
 import easymall.service.ProductsService;
 
@@ -26,11 +29,11 @@ public class ProductsController {
 	}
 	
 	@RequestMapping("/prodlist")
-	public String prodlist(String name,String category,
+	public String prodlist(String name,Integer category,
 			String minprice,String maxprice,Model model) {
 		
 		//查询商品表中的所有商品类别
-		List<String> categorys = productsService.allcategorys();
+		List<Category> categorys = productsService.allcategorys();
 		model.addAttribute("categorys", categorys);
 		
 		//对传过来的数值范围进行处理，不符合要求的则按默认要求处理
@@ -77,7 +80,7 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(value="/prodclass/{category}",method=RequestMethod.GET)
-	public String prodclass(@PathVariable String category,Model model) {
+	public String prodclass(@PathVariable Integer category,Model model) {
 		List<Products> products = productsService.prodclass(category);
 		model.addAttribute("products", products);
 		return "forward:/WEB-INF/jsp/prod_list.jsp";
@@ -96,5 +99,20 @@ public class ProductsController {
 		//查找所有商品
 		List<Products> products = productsService.selectAllProducts();
 		return products;
+	}
+	
+	@RequestMapping("/makeExcel")
+	public String makeExcel(Model model){
+		//System.out.println("准备生成execl！");
+		List<Products> products = productsService.selectAllProductsBysaleNum();
+		
+//		for(int i = 0 ; i <products.size() ; i++ ) {
+//			System.out.println(products.get(i));
+//		}
+		POI pt = new POI();
+		pt.showExcel(products);
+		//System.out.println("success");
+		model.addAttribute("message", "成功打印销售榜单");
+		return "redirect:/admin/manager";
 	}
 }

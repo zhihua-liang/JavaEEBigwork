@@ -25,9 +25,6 @@
 		<span id="goto">
 			<a id="goto_order" href="${pageContext.request.contextPath}/order/showorder">我的订单</a>
 			<a id="goto_cart" href="${pageContext.request.contextPath}/cart/showCart">我的购物车</a>
-			
-			<!-- 新增的查看图表超链接，有后台后转移地方 -->
-			<a id="goto_chart" href="${ pageContext.request.contextPath }/showchart">我的图表</a>
 		</span>
 		<img id="erwm" src="${ pageContext.request.contextPath }/img/head/qr.jpg"/>
 	</div>
@@ -36,14 +33,13 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 				<li><a href="${pageContext.request.contextPath}/prodlist">全部商品</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/手机数码">手机数码</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/电脑平板">电脑平板</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/家用电器">家用电器</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/汽车用品">汽车用品</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/食品饮料">食品饮料</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/图书杂志">图书杂志</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/服装服饰">服装服饰</a></li>
-				<li><a href="${pageContext.request.contextPath}/prodclass/理财产品">理财产品</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/1">手机数码</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/2">日用百货</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/3">家用电器</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/4">图书杂志</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/5">服装服饰</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/6">床上用品</a></li>
+				<li><a href="${pageContext.request.contextPath}/prodclass/7">汽车用品</a></li>
 			</ul>
 		</div>
 	</div>

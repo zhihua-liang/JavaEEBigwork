@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 将用户插入到数据库中 -->
 	<insert id="regist" parameterType="easymall.pojo.User">
-		insert into user(id,username,password,nickname,email)
-		values(null,#{username},#{password},#{nickname},#{email})
+		insert into user(id,username,password,email)
+		values(null,#{username},#{password},#{email})
 	</insert>
 	
 	<!-- 激活邮箱 -->

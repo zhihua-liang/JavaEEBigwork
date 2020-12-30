@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,11 +26,24 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(User user, HttpSession session, Model model) {
 		User muser = userService.login(user);
+		
 		if(muser != null) {
+			//校验账号是否激活
+			if(muser.getActiveState() == 0) {
+				model.addAttribute("message","账号未激活");
+				return "login";
+			}
 			session.setAttribute("user", muser);
+			
+			//是管理员则跳转到后台管理界面
+			String nickName = muser.getNickname();
+			if("管理员".equals(nickName) || "超级管理员".equals(nickName)) {
+				return "redirect:/admin/manager";
+			}
+				
 			return "redirect:/index.jsp";
 		}else {
-			model.addAttribute("messageError","用户名或密码错误");
+			model.addAttribute("message","用户名或密码错误");
 			return "login";
 		}
 	}
@@ -71,10 +85,14 @@ public class UserController {
 		}
 	}
 	
-	//更新用户激活码
+	//更新用户激活码，激活用户
 	@RequestMapping("/updatecode")
-	public String updatecode(User user) {
+	public String updatecode(String code,String email) {
+		User user = new User();
+		user.setCode(code);
+		user.setEmail(email);
 		user.setActiveState(1);
+		
 		userService.updatecode(user);
 		return "confirm";
 	}
